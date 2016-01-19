@@ -14,7 +14,14 @@ cd "$GCC_BUILD_DIR"
   --enable-languages=c,c++ \
   --without-headers
 
-  make all-gcc
-  make all-target-libgcc
-  make install-gcc
-  make install-target-libgcc
+make -j 4 all-gcc
+make -j 4 all-target-libgcc
+make install-gcc
+make install-target-libgcc
+
+# Strip binaries
+find /usr/local/bin/ -executable -type f | xargs strip --strip-unneeded
+find /usr/local/libexec/gcc/i686-elf/5.3.0/ -executable -size +5M -type f | xargs strip --strip-unneeded
+
+#make
+#make install-strip

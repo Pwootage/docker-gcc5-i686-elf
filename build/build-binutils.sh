@@ -14,5 +14,5 @@ cd "$BINUTILS_BUILD_DIR"
   --disable-nls \
   --disable-werror
 
-make
+make -j 4
 make install
